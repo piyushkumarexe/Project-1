@@ -3,6 +3,8 @@
 import React from "react";
 import Link from "next/link";
 import { MessageCircle, ShieldCheck, Truck, Zap } from "lucide-react";
+import { LogoMark } from "./Logo";
+import { BRAND } from "@/lib/brand";
 
 export default function AnnouncementBar() {
   const announcements = [
@@ -16,6 +18,14 @@ export default function AnnouncementBar() {
 
   return (
     <div className="bg-[#000000] border-b border-[#1f2430] text-xs text-amber-400 font-medium py-2 overflow-hidden select-none relative z-40">
+      {/* Brand chip pinned on the left of the ticker */}
+      <div className="hidden sm:flex absolute left-0 top-0 h-full z-10 items-center gap-1.5 pl-3 sm:pl-4 pr-6 bg-gradient-to-r from-black via-black/95 to-transparent">
+        <LogoMark size={15} glow={false} />
+        <span className="text-[10px] font-black uppercase tracking-[0.22em] text-amber-400 whitespace-nowrap">
+          {BRAND.name}
+        </span>
+      </div>
+
       <div className="flex w-max animate-marquee space-x-8 items-center">
         {/* Repeating twice for seamless infinite loop */}
         {[...announcements, ...announcements, ...announcements].map((item, idx) => (

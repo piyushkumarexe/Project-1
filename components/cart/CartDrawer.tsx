@@ -18,6 +18,8 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { LogoMark } from "@/components/layout/Logo";
+import { BRAND } from "@/lib/brand";
 import ProductVisual from "@/components/ui/ProductVisual";
 
 export default function CartDrawer() {
@@ -78,11 +80,17 @@ export default function CartDrawer() {
         <div className="w-screen max-w-md bg-[#0d1017] border-l border-[#1f2430] flex flex-col shadow-2xl">
           {/* Drawer Header */}
           <div className="p-4 sm:p-5 border-b border-[#1f2430] flex items-center justify-between bg-[#090b0e]">
-            <div className="flex items-center gap-2">
-              <ShoppingBag className="w-5 h-5 text-amber-400" />
-              <h2 className="text-base font-black uppercase tracking-wider text-white">
-                Shopping Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)})
-              </h2>
+            <div className="flex items-center gap-2.5">
+              <LogoMark size={26} glow={false} />
+              <div>
+                <h2 className="text-base font-black uppercase tracking-wider text-white flex items-center gap-1.5">
+                  <ShoppingBag className="w-4 h-4 text-amber-400" />
+                  <span>Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)})</span>
+                </h2>
+                <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-gray-500">
+                  {BRAND.slogan}
+                </p>
+              </div>
             </div>
             <button
               type="button"

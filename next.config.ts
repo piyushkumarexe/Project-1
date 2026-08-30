@@ -3,6 +3,10 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
+  images: {
+    // Hero photography is served through the optimizer at two deliberate steps.
+    qualities: [75, 80],
+  },
   async headers() {
     return [
       {

@@ -12,8 +12,11 @@ import {
   Phone,
   MapPin,
   Lock,
+  MessageCircle,
 } from "lucide-react";
 import Logo from "./Logo";
+import { InstagramGlyph, YoutubeGlyph } from "@/components/ui/SocialIcons";
+import { BRAND, waLink } from "@/lib/brand";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -103,14 +106,54 @@ export default function Footer() {
               Alpha Gains is India&apos;s premier destination for genuine, lab-tested performance nutrition, peptides, protein isolates, and strength supplements. Sasta Nahi, Sabse Accha.
             </p>
             <div className="space-y-2 pt-1 text-xs">
-              <div className="flex items-center gap-2 text-gray-300">
-                <Phone className="w-3.5 h-3.5 text-amber-400" />
-                <span>WhatsApp: +91 7288830003 (10 AM - 8 PM IST)</span>
+              <div className="flex items-start gap-2 text-gray-300">
+                <Phone className="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0" />
+                <span>
+                  WhatsApp: {BRAND.contact.whatsappDisplay}
+                  <span className="block text-[10px] text-gray-500">{BRAND.contact.hours}</span>
+                </span>
               </div>
               <div className="flex items-center gap-2 text-gray-300">
-                <Mail className="w-3.5 h-3.5 text-amber-400" />
-                <span>support@alphagains.in</span>
+                <Mail className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                <a href={`mailto:${BRAND.contact.email}`} className="hover:text-amber-400 transition-colors">
+                  {BRAND.contact.email}
+                </a>
               </div>
+              <div className="flex items-start gap-2 text-gray-400">
+                <MapPin className="w-3.5 h-3.5 text-amber-400 mt-0.5 flex-shrink-0" />
+                <span>{BRAND.contact.address}</span>
+              </div>
+            </div>
+
+            {/* Socials */}
+            <div className="flex items-center gap-2 pt-1">
+              <a
+                href={waLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Chat with Alpha Gains on WhatsApp"
+                className="w-8 h-8 rounded-lg bg-[#121622] border border-[#1f2638] hover:border-emerald-500/60 hover:text-emerald-400 text-gray-300 flex items-center justify-center transition-colors"
+              >
+                <MessageCircle className="w-4 h-4" />
+              </a>
+              <a
+                href={BRAND.contact.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Alpha Gains on Instagram"
+                className="w-8 h-8 rounded-lg bg-[#121622] border border-[#1f2638] hover:border-rose-500/60 hover:text-rose-400 text-gray-300 flex items-center justify-center transition-colors"
+              >
+                <InstagramGlyph className="w-4 h-4" />
+              </a>
+              <a
+                href={BRAND.contact.youtube}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Alpha Gains on YouTube"
+                className="w-8 h-8 rounded-lg bg-[#121622] border border-[#1f2638] hover:border-red-600/60 hover:text-red-500 text-gray-300 flex items-center justify-center transition-colors"
+              >
+                <YoutubeGlyph className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
@@ -217,8 +260,12 @@ export default function Footer() {
 
         {/* Bottom Strip */}
         <div className="mt-12 pt-6 border-t border-[#161c27] flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-gray-500">
-          <div>
-            &copy; {new Date().getFullYear()} ALPHA GAINS | Designed for Peak Athletic Performance. All Rights Reserved.
+          <div className="flex items-center gap-2">
+            <Logo size="sm" variant="mark" showTagline={false} />
+            <span>
+              &copy; {new Date().getFullYear()} {BRAND.name.toUpperCase()} | Designed for peak athletic
+              performance. All rights reserved.
+            </span>
           </div>
 
           {/* Payment Badges */}

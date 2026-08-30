@@ -184,7 +184,11 @@ export default function CheckoutPage() {
     return (
       <div className="bg-[#090b0e] min-h-screen py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto bg-[#0d1017] border border-[#232b3d] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8 animate-in zoom-in-95 duration-200 text-center">
-          <div className="w-20 h-20 mx-auto rounded-full bg-emerald-500/20 border-2 border-emerald-500/40 flex items-center justify-center text-emerald-400">
+          <div className="flex justify-center">
+            <Logo size="md" href={null} showTagline={false} />
+          </div>
+
+          <div className="w-20 h-20 mx-auto rounded-full bg-emerald-500/20 border-2 border-emerald-500/40 flex items-center justify-center text-emerald-400 ring-gold-hover">
             <CheckCircle2 className="w-10 h-10" />
           </div>
 

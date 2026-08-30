@@ -2,21 +2,20 @@
 
 import React, { useState } from "react";
 import { MessageCircle, X, Send, ShieldCheck } from "lucide-react";
+import { LogoMark } from "./Logo";
+import { BRAND, waLink } from "@/lib/brand";
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("Hi Alpha Gains, I want to inquire about supplement availability and lab reports.");
 
-  const phoneNumber = "917288830003";
-
   const handleSend = () => {
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-    window.open(url, "_blank");
+    window.open(waLink(message), "_blank");
     setIsOpen(false);
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end">
+    <div className="fixed bottom-[4.5rem] lg:bottom-6 right-4 sm:right-6 z-40 flex flex-col items-end">
       {/* Quick Chat Popup */}
       {isOpen && (
         <div className="mb-3 w-80 bg-[#0d1017] border border-[#242d40] rounded-2xl shadow-2xl overflow-hidden animate-in slide-in-from-bottom-3 duration-200">
@@ -24,14 +23,14 @@ export default function WhatsAppButton() {
           <div className="bg-emerald-600 p-4 text-white flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="relative">
-                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">
-                  AG
+                <div className="w-9 h-9 rounded-full bg-[#0b0e14] flex items-center justify-center border border-white/25">
+                  <LogoMark size={22} glow={false} />
                 </div>
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-300 border-2 border-emerald-600 rounded-full" />
               </div>
               <div>
-                <h4 className="text-xs font-black uppercase">Alpha Gains Support</h4>
-                <p className="text-[10px] text-emerald-100">Typically replies instantly</p>
+                <h4 className="text-xs font-black uppercase">{BRAND.name} Support</h4>
+                <p className="text-[10px] text-emerald-100">{BRAND.contact.whatsappDisplay} · {BRAND.contact.hours}</p>
               </div>
             </div>
             <button

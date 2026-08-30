@@ -29,9 +29,18 @@ export default function Header() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isCategoriesDropdownOpen, setIsCategoriesDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
   const pathname = usePathname();
   const router = useRouter();
+
+  // Compact, "solid" header once the visitor scrolls past the hero
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const totalCartItems = cart.reduce((sum, item) => sum + item.quantity, 0);
   const searchResults = searchQuery.trim() ? searchProducts(searchQuery).slice(0, 6) : [];
@@ -60,6 +69,18 @@ export default function Header() {
     }
   }, [isSearchOpen]);
 
+  // ESC to close the live search overlay / lock scroll while the drawer is open
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsSearchOpen(false);
+        setIsMobileMenuOpen(false);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchQuery.trim()) return;
@@ -68,9 +89,25 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-40 bg-[#090b0e]/95 backdrop-blur-md border-b border-[#1f2430] transition-all">
+    <header
+      className={`sticky top-0 z-40 backdrop-blur-md border-b transition-all duration-300 ${
+        isScrolled
+          ? "bg-[#07090c]/97 border-[#242c3e] shadow-[0_14px_44px_-26px_rgba(245,158,11,0.5)]"
+          : "bg-[#090b0e]/95 border-[#1f2430]"
+      }`}
+    >
+      {/* Gold hairline appears when the header compacts */}
+      <div
+        className={`h-[2px] bg-gradient-to-r from-transparent via-amber-500 to-transparent transition-opacity duration-300 ${
+          isScrolled ? "opacity-100" : "opacity-0"
+        }`}
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20">
+        <div
+          className={`flex items-center justify-between transition-all duration-300 ${
+            isScrolled ? "h-16" : "h-20"
+          }`}
+        >
           {/* Mobile menu trigger */}
           <div className="flex items-center lg:hidden">
             <button
@@ -85,7 +122,7 @@ export default function Header() {
 
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
-            <Logo size="md" />
+            <Logo size={isScrolled ? "sm" : "md"} />
           </div>
 
           {/* Desktop Navigation */}
@@ -224,7 +261,7 @@ export default function Header() {
                 Bag
               </span>
               {totalCartItems > 0 && (
-                <span className="bg-amber-500 text-black text-[11px] font-black px-1.5 py-0.2 rounded-full min-w-[18px] text-center">
+                <span className="bg-amber-500 text-black text-[11px] font-black px-1.5 py-0.5 rounded-full min-w-[18px] text-center">
                   {totalCartItems}
                 </span>
               )}
@@ -336,7 +373,19 @@ export default function Header() {
 
       {/* Mobile Drawer Navigation */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-0 top-28 z-40 bg-black/90 backdrop-blur-lg flex flex-col p-6 overflow-y-auto animate-in slide-in-from-left duration-200">
+        <div className="lg:hidden fixed inset-0 top-28 z-40 bg-black/90 backdrop-blur-lg flex flex-col p-6 pb-24 overflow-y-auto animate-in slide-in-from-left duration-200">
+          <div className="flex items-center justify-between pb-5 mb-5 border-b border-[#1f2430]">
+            <Logo size="md" />
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(false)}
+              aria-label="Close menu"
+              className="p-2 rounded-lg text-gray-300 hover:text-white hover:bg-[#181e2b] transition-colors"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
           <div className="space-y-4 text-base font-bold uppercase tracking-wider">
             <Link
               href="/"

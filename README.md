@@ -23,6 +23,63 @@ Alpha Gains is a modern e-commerce platform built for authentic imported fitness
 
 ---
 
+## 🎨 Brand Kit — Where The Logo Lives
+
+All brand assets are driven from **one file**: `lib/brand.ts`.
+
+| File | Use |
+| --- | --- |
+| `public/logo.svg` | Primary lockup (shield mark + ALPHA GAINS wordmark + tagline) — header, footer, modals |
+| `public/logo-mark.svg` | Icon only — favicon, PWA, cart chip, loader, WhatsApp widget |
+| `public/logo-stacked.svg` | Centred lockup for pop-ups / splash |
+| `public/logo-white.svg` / `logo-black.svg` | Monochrome lockups for photos, invoices, packaging, stickers |
+| `public/logo.png` | 1024px raster — social share, WhatsApp DP, uploads |
+| `public/og/og-image.png` | 1200×630 link-preview image (WhatsApp / Instagram / Google) |
+| `app/icon.svg`, `app/favicon.ico`, `app/apple-icon.png` | Browser tab, bookmarks, iOS home screen |
+| `public/icons/*`, `app/manifest.ts` | Android / PWA install icons (192, 512, maskable) |
+
+### Swap in your own logo in 30 seconds
+
+1. Drop the file into `public/` — e.g. `public/logo.png`.
+2. In `lib/brand.ts` point `logo.src` to `"/logo.png"` (and `logo.withWordmark` to `true`
+   if your file already includes the "ALPHA GAINS" text).
+3. Done — `components/layout/Logo.tsx` renders it in the header, mobile drawer, footer,
+   age gate, welcome pop-up, cart drawer, checkout success, loader and 404 page.
+   If the file is ever missing, the component falls back to the built-in vector mark,
+   so the site can never show a broken image.
+
+Regenerate the favicon / PWA / share rasters from a new `public/logo-mark.svg`:
+
+```bash
+npm i -D sharp      # build-time only tool
+npm run brand:assets
+```
+
+Typography: condensed athletic display face (Oswald + Archivo Black, loaded in
+`app/layout.tsx`) with a safe system fallback, dark athletic palette
+(`#090b0e` ink, `#121622` panels, `#f59e0b` gold) exposed as Tailwind tokens
+(`bg-brand-ink`, `text-brand-gold`, `font-display`) in `app/globals.css`.
+
+---
+
+##  Homepage Layout (Suppx-matched, then pushed further)
+
+1. Full-bleed **hero banner slider** — 3 cinematic slides, auto-play, swipe, keyboard,
+   progress dots, Ken-Burns zoom, floating featured-stack card
+2. **Categories** grid with product render art tiles
+3. **Shop By Goal** combos & stacks (up to 35% off)
+4. **Bestsellers** with category filter pills
+5. **Athlete reviews** wall + service pillars + rating summary
+6. **Why Buy From Alpha Gains** trust section
+7. Marquee ticker
+8. Category spotlight (peptides / pre-workout)
+9. Real-time **batch authenticity verifier**
+10. **FAQ & support** accordion
+11. Brand mission + WhatsApp CTA
+12. App-style **mobile bottom tab bar** with logo chip (Home / Shop / Combos / Wishlist / Bag)
+
+---
+
 ## 🔒 Security Architecture & Hardening
 
 1. **Never Trust the Client**: Strict server-side recalculation of all cart totals, coupon discounts, and shipping rules.

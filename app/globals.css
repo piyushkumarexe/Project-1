@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --font-display: "Oswald", "Archivo Black", "Arial Narrow", Arial, sans-serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --color-brand-ink: #090b0e;
+  --color-brand-panel: #121622;
+  --color-brand-border: #232a3b;
+  --color-brand-gold: #f59e0b;
+  --color-brand-gold-light: #fbbf24;
+  --color-brand-gold-dark: #d97706;
+
+  --animate-kenburns: kenburns 12s ease-out both;
+  --animate-fade-up: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 :root {
   --background: #090b0e;
   --foreground: #f3f4f6;
@@ -12,8 +27,20 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--font-sans);
   overflow-x: hidden;
+}
+
+/* ---------------------------------------------------------------------------
+ * Athletic typography: every display heading gets the condensed brand face
+ * (Oswald loads in <head>; the stack degrades gracefully if it is blocked)
+ * ------------------------------------------------------------------------- */
+h1,
+h2,
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+  font-weight: 700;
 }
 
 /* Custom scrollbar */
@@ -32,6 +59,14 @@ body {
   background: #f59e0b;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Marquee infinite scroll animation */
 @keyframes marquee {
   0% {
@@ -48,12 +83,58 @@ body {
   animation: marquee 25s linear infinite;
 }
 
+.animate-marquee-slow {
+  display: flex;
+  width: max-content;
+  animation: marquee 45s linear infinite;
+}
+
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
+/* Hero: slow cinematic zoom on the active slide */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: scale(1.16) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes slideProgress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.hero-progress {
+  transform-origin: left center;
+  animation: slideProgress 6500ms linear both;
+}
+
+.fade-up {
+  animation: fadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 @keyframes pulseGlow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
   }
   50% {
@@ -63,6 +144,37 @@ body {
 
 .glow-amber {
   animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* Logo halo used behind the shield mark on splash / modals */
+@keyframes logoHalo {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+}
+
+.logo-halo {
+  animation: logoHalo 2.6s ease-in-out infinite;
+}
+
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.float-y {
+  animation: floatY 5s ease-in-out infinite;
 }
 
 /* Shimmer badge animation */
@@ -91,5 +203,51 @@ body {
     rgba(255, 255, 255, 0)
   );
   animation: shimmer 2.5s infinite;
-  content: '';
+  content: "";
+}
+
+/* Brand helpers ------------------------------------------------------------- */
+.text-gradient-gold {
+  background-image: linear-gradient(100deg, #fcd34d 0%, #f59e0b 45%, #ea580c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.ring-gold-hover {
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+.ring-gold-hover:hover {
+  border-color: rgba(245, 158, 11, 0.55);
+  box-shadow: 0 12px 40px -18px rgba(245, 158, 11, 0.55);
+}
+
+/* Hero legibility scrim over photography */
+.hero-scrim {
+  background:
+    linear-gradient(90deg, rgba(6, 8, 11, 0.96) 0%, rgba(6, 8, 11, 0.82) 42%, rgba(6, 8, 11, 0.35) 72%, rgba(6, 8, 11, 0.6) 100%),
+    linear-gradient(0deg, rgba(6, 8, 11, 0.95) 0%, rgba(6, 8, 11, 0) 45%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-marquee-slow,
+  .float-y,
+  .logo-halo,
+  .glow-amber,
+  .shimmer-effect::after,
+  .fade-up,
+  [class*="animate-kenburns"] {
+    animation: none !important;
+  }
+  .hero-progress {
+    animation: none !important;
+    transform: scaleX(1);
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

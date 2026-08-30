@@ -2,40 +2,48 @@ import HeroBanner from "@/components/home/HeroBanner";
 import CategoriesGrid from "@/components/home/CategoriesGrid";
 import ShopByGoal from "@/components/home/ShopByGoal";
 import Bestsellers from "@/components/home/Bestsellers";
+import SocialProof from "@/components/home/SocialProof";
 import WhyBuySection from "@/components/home/WhyBuySection";
 import MarqueeTicker from "@/components/home/MarqueeTicker";
 import CategorySpotlight from "@/components/home/CategorySpotlight";
 import AuthenticityWidget from "@/components/home/AuthenticityWidget";
+import FaqSection from "@/components/home/FaqSection";
 import BrandMission from "@/components/home/BrandMission";
 
 export default function HomePage() {
   return (
     <div className="flex flex-col min-h-screen">
-      {/* 1. Hero Showcase */}
+      {/* 1. Full-bleed hero slider — banner, slogan + CTAs */}
       <HeroBanner />
 
-      {/* 2. Categories 10-Grid */}
+      {/* 2. Categories 10-grid with product render art */}
       <CategoriesGrid />
 
-      {/* 3. Shop By Goal Combos & Stacks */}
+      {/* 3. Shop By Goal combos & stacks */}
       <ShopByGoal />
 
-      {/* 4. Bestselling Supplements */}
+      {/* 4. Bestselling supplements with category filters */}
       <Bestsellers />
 
-      {/* 5. Why Buy From Alpha Gains Trust Pillars */}
+      {/* 5. Verified athlete reviews + service pillars */}
+      <SocialProof />
+
+      {/* 6. Why buy from Alpha Gains trust pillars */}
       <WhyBuySection />
 
-      {/* 6. Middle Marquee Animated Ticker */}
+      {/* 7. Middle marquee animated ticker */}
       <MarqueeTicker />
 
-      {/* 7. Category Spotlight: Peptides & Pre-Workouts */}
+      {/* 8. Category spotlight: peptides & pre-workouts */}
       <CategorySpotlight />
 
-      {/* 8. Real-time Batch Authenticity Verifier */}
+      {/* 9. Real-time batch authenticity verifier */}
       <AuthenticityWidget />
 
-      {/* 9. Brand Mission & WhatsApp Banner */}
+      {/* 10. FAQ + WhatsApp support */}
+      <FaqSection />
+
+      {/* 11. Brand mission & WhatsApp banner */}
       <BrandMission />
     </div>
   );

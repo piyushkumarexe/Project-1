@@ -11,6 +11,7 @@ import CookieConsent from "@/components/layout/CookieConsent";
 import WelcomePopup from "@/components/layout/WelcomePopup";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
 import Toast from "@/components/ui/Toast";
+import MobileBottomNav from "@/components/layout/MobileBottomNav";
 
 export const metadata: Metadata = {
   title: "Alpha Gains | 100% Authentic Imported Supplements & Performance Nutrition",
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#090b0e",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
@@ -39,8 +40,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className="min-h-screen bg-[#090b0e] text-[#f3f4f6] font-sans antialiased selection:bg-amber-500 selection:text-black flex flex-col justify-between">
+    <html lang="en" className="scroll-smooth">
+      <body className="min-h-screen bg-white text-neutral-900 font-sans antialiased selection:bg-red-600 selection:text-white flex flex-col justify-between pb-[58px] lg:pb-0">
         <CartProvider>
           {/* Top Ticker Marquee */}
           <AnnouncementBar />
@@ -62,6 +63,7 @@ export default function RootLayout({
           <WelcomePopup />
           <WhatsAppButton />
           <Toast />
+          <MobileBottomNav />
         </CartProvider>
       </body>
     </html>

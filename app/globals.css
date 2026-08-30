@@ -1,19 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #090b0e;
-  --foreground: #f3f4f6;
-  --card-bg: #12161f;
-  --card-border: #232a3b;
-  --accent-gold: #f59e0b;
-  --accent-gold-hover: #d97706;
+  --background: #ffffff;
+  --foreground: #111111;
+  --surface: #f6f6f7;
+  --card-bg: #ffffff;
+  --card-border: #e6e6e9;
+  --accent-red: #e11d2a;
+  --accent-red-hover: #b91c1c;
+  --accent-green: #7ac043;
+  --topbar: #111111;
 }
 
+html,
 body {
   background-color: var(--background);
   color: var(--foreground);
+}
+
+body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   overflow-x: hidden;
+  /* room for the fixed mobile bottom nav */
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 /* Custom scrollbar */
@@ -22,14 +31,23 @@ body {
   height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #090b0e;
+  background: #f1f1f3;
 }
 ::-webkit-scrollbar-thumb {
-  background: #232a3b;
+  background: #d4d4d8;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #f59e0b;
+  background: var(--accent-red);
+}
+
+/* Hide scrollbar for horizontal category rails */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Marquee infinite scroll animation */
@@ -53,15 +71,17 @@ body {
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+  0%,
+  100% {
+    box-shadow: 0 0 15px rgba(225, 29, 42, 0.15);
   }
   50% {
-    box-shadow: 0 0 25px rgba(245, 158, 11, 0.5);
+    box-shadow: 0 0 25px rgba(225, 29, 42, 0.35);
   }
 }
 
-.glow-amber {
+.glow-amber,
+.glow-red {
   animation: pulseGlow 3s ease-in-out infinite;
 }
 
@@ -86,10 +106,28 @@ body {
   background-image: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0,
-    rgba(255, 255, 255, 0.08) 20%,
-    rgba(255, 255, 255, 0.2) 60%,
+    rgba(255, 255, 255, 0.25) 20%,
+    rgba(255, 255, 255, 0.55) 60%,
     rgba(255, 255, 255, 0)
   );
   animation: shimmer 2.5s infinite;
-  content: '';
+  content: "";
+}
+
+/* Red studio backdrop used behind product art (matches store photography) */
+.studio-red {
+  background:
+    radial-gradient(120% 90% at 30% 15%, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 55%),
+    linear-gradient(140deg, #c2101c 0%, #9c0d16 45%, #6d070d 100%);
+}
+
+.studio-dark {
+  background:
+    radial-gradient(110% 80% at 50% 10%, rgba(225, 29, 42, 0.35) 0%, rgba(0, 0, 0, 0) 60%),
+    linear-gradient(160deg, #1a1a1c 0%, #000000 100%);
+}
+
+/* Page hero band (red breadcrumb banner) */
+.page-band {
+  background: linear-gradient(100deg, #8f0d16 0%, #c2101c 55%, #e11d2a 100%);
 }

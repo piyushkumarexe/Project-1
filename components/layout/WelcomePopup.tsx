@@ -67,18 +67,18 @@ export default function WelcomePopup() {
 
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
-      <div className="relative w-full max-w-lg bg-[#0d1017] border border-[#242c3f] rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
+      <div className="relative w-full max-w-lg bg-white border border-neutral-200 rounded-2xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
         {/* Close Button */}
         <button
           type="button"
           onClick={handleClose}
-          className="absolute top-4 right-4 z-10 p-1.5 rounded-full bg-black/60 hover:bg-[#1f2430] text-gray-400 hover:text-white transition-colors"
+          className="absolute top-4 right-4 z-10 p-1.5 rounded-full bg-white hover:bg-neutral-100 text-neutral-700 hover:text-black shadow border border-neutral-200 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
 
         {/* Top Gold Banner Banner */}
-        <div className="bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 p-3 text-center text-black font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2">
+        <div className="bg-gradient-to-r from-red-700 via-red-600 to-red-700 p-3 text-center text-neutral-900 font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2">
           <Gift className="w-4 h-4" />
           <span>Exclusive New Athlete Offer</span>
         </div>
@@ -90,10 +90,10 @@ export default function WelcomePopup() {
 
           {!isSuccess ? (
             <div>
-              <h3 className="text-2xl font-black text-white uppercase tracking-tight mb-2">
-                Unlock <span className="text-amber-400">10% OFF</span> Your First Order
+              <h3 className="text-2xl font-black text-neutral-900 uppercase tracking-tight mb-2">
+                Unlock <span className="text-red-600">10% OFF</span> Your First Order
               </h3>
-              <p className="text-xs text-gray-300 max-w-sm mx-auto mb-6">
+              <p className="text-xs text-neutral-700 max-w-sm mx-auto mb-6">
                 Join 10,000+ elite athletes. Subscribe to get our secret VIP coupon code and exclusive access to freshly imported supplement drops.
               </p>
 
@@ -103,7 +103,7 @@ export default function WelcomePopup() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="Enter your email address"
-                  className="w-full px-4 py-3 rounded-xl bg-[#141822] border border-[#232a3b] text-white placeholder-gray-500 text-sm focus:outline-none focus:border-amber-500"
+                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-neutral-900 placeholder-neutral-400 text-sm focus:outline-none focus:border-red-600"
                   required
                 />
 
@@ -112,43 +112,43 @@ export default function WelcomePopup() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="WhatsApp number (Optional for deal alerts)"
-                  className="w-full px-4 py-3 rounded-xl bg-[#141822] border border-[#232a3b] text-white placeholder-gray-500 text-sm focus:outline-none focus:border-amber-500"
+                  className="w-full px-4 py-3 rounded-xl bg-neutral-50 border border-neutral-200 text-neutral-900 placeholder-neutral-400 text-sm focus:outline-none focus:border-red-600"
                 />
 
-                {errorMsg && <p className="text-xs text-rose-400">{errorMsg}</p>}
+                {errorMsg && <p className="text-xs text-rose-600">{errorMsg}</p>}
 
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-amber-500/20 disabled:opacity-60"
+                  className="w-full py-3 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase tracking-wider transition-all shadow-lg shadow-red-600/20 disabled:opacity-60"
                 >
                   {isSubmitting ? "Generating Coupon..." : "Get 10% Discount Code"}
                 </button>
               </form>
 
-              <p className="text-[10px] text-gray-500 mt-4">
+              <p className="text-[10px] text-neutral-500 mt-4">
                 By signing up, you agree to our Terms and Privacy Policy. Zero spam, unsubscribe anytime.
               </p>
             </div>
           ) : (
             <div className="py-4">
-              <div className="w-16 h-16 mx-auto rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4">
+              <div className="w-16 h-16 mx-auto rounded-full bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-600 mb-4">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h4 className="text-xl font-black text-white uppercase mb-2">
+              <h4 className="text-xl font-black text-neutral-900 uppercase mb-2">
                 Coupon Unlocked!
               </h4>
-              <p className="text-xs text-gray-300 mb-4">
+              <p className="text-xs text-neutral-700 mb-4">
                 Use this promo code during checkout to claim your 10% instant discount:
               </p>
-              <div className="inline-block px-5 py-2.5 rounded-xl bg-[#151a26] border-2 border-dashed border-amber-400 text-amber-400 font-mono font-black text-lg tracking-widest mb-6">
+              <div className="inline-block px-5 py-2.5 rounded-xl bg-neutral-50 border-2 border-dashed border-red-600 text-red-600 font-mono font-black text-lg tracking-widest mb-6">
                 ALPHAFIRST10
               </div>
               <div>
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="px-6 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-black text-xs uppercase tracking-wider"
+                  className="px-6 py-2.5 rounded-xl bg-red-600 hover:bg-red-700 text-white font-black text-xs uppercase tracking-wider"
                 >
                   Start Shopping Now
                 </button>

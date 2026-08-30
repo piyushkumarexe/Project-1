@@ -42,7 +42,7 @@ export default function AgeVerificationModal() {
     <div className="fixed inset-0 z-50 overflow-y-auto bg-black/90 backdrop-blur-md flex items-center justify-center p-4 select-none">
       <div className="relative w-full max-w-md bg-white border border-neutral-200 rounded-2xl shadow-2xl p-6 sm:p-8 text-center animate-in zoom-in-95 duration-200">
         <div className="flex justify-center mb-5">
-          <Logo size="lg" />
+          <Logo size="lg" markOnly />
         </div>
 
         {!isDenied ? (

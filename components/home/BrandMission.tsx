@@ -9,7 +9,7 @@ export default function BrandMission() {
     <section className="py-20 bg-white border-b border-neutral-200 relative overflow-hidden text-center">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-6">
         <div className="flex justify-center">
-          <Logo size="lg" />
+          <Logo size="lg" markOnly />
         </div>
 
         <h2 className="text-2xl sm:text-4xl font-black text-neutral-900 uppercase tracking-tight">

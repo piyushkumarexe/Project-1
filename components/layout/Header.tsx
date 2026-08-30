@@ -85,7 +85,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 bg-white border-b border-neutral-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-[1fr_auto_1fr] items-center h-[70px] gap-2">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-center h-[76px] gap-2">
           {/* Left: hamburger (mobile) / nav (desktop) */}
           <div className="flex items-center justify-start">
             <button
@@ -302,7 +302,7 @@ export default function Header() {
 
       {/* Mobile drawer */}
       {isMobileMenuOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[110px] bottom-0 z-40 bg-white flex flex-col p-6 overflow-y-auto border-t border-neutral-200">
+        <div className="lg:hidden fixed inset-x-0 top-[116px] bottom-0 z-40 bg-white flex flex-col p-6 overflow-y-auto border-t border-neutral-200">
           <div className="space-y-1 text-[15px] font-bold uppercase tracking-wide">
             <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className="block py-3 text-neutral-900 border-b border-neutral-200">
               Home

@@ -18,10 +18,15 @@ export const metadata: Metadata = {
   description: "Sasta Nahi, Sabse Accha. Shop 100% authentic whey protein, creatine, pre-workouts, mass gainers, natural peptides and health stacks at Alpha Gains.",
   keywords: "Alpha Gains, whey protein, creatine, pre-workout, bodybuilding supplements, imported supplements India, muscle gainer, lab tested supplements, peptides",
   authors: [{ name: "Alpha Gains Nutrition" }],
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png" }],
+  },
   openGraph: {
     title: "Alpha Gains | 100% Authentic Imported Supplements",
     description: "Sasta Nahi, Sabse Accha. Fuel your beast with 100% lab tested and certified imported performance supplements.",
     siteName: "Alpha Gains",
+    images: [{ url: "/images/logo-512.png", width: 512, height: 512, alt: "Alpha Gains Supplements Store" }],
     type: "website",
     locale: "en_IN",
   },

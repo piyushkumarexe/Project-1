@@ -25,6 +25,13 @@ export default function HeroBanner() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-black/30" />
 
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6">
+            <Image
+              src="/images/logo-mark.png"
+              alt=""
+              width={96}
+              height={96}
+              className="w-16 h-16 sm:w-24 sm:h-24 mb-3 rounded-full drop-shadow-[0_4px_16px_rgba(0,0,0,0.7)]"
+            />
             <h1 className="text-white font-black italic uppercase tracking-tight text-xl sm:text-3xl lg:text-4xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">
               Sasta Nahi, Sabse Accha
             </h1>

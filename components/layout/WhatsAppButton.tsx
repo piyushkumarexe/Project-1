@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { MessageCircle, X, Send, ShieldCheck, ArrowUp } from "lucide-react";
 
 export default function WhatsAppButton() {
@@ -24,8 +25,8 @@ export default function WhatsAppButton() {
           <div className="bg-emerald-600 p-4 text-neutral-900 flex items-center justify-between">
             <div className="flex items-center gap-2.5">
               <div className="relative">
-                <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center font-bold text-sm">
-                  AG
+                <div className="w-9 h-9 rounded-full overflow-hidden bg-white/20 flex items-center justify-center">
+                  <Image src="/images/logo-mark.png" alt="Alpha Gains" width={36} height={36} className="object-cover" />
                 </div>
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-300 border-2 border-emerald-600 rounded-full" />
               </div>

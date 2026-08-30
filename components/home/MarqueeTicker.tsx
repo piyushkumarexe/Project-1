@@ -14,13 +14,13 @@ export default function MarqueeTicker() {
   ];
 
   return (
-    <div className="bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600 text-black py-3.5 overflow-hidden font-black text-xs uppercase tracking-widest select-none shadow-md">
+    <div className="bg-gradient-to-r from-red-600 via-red-600 to-red-700 text-white py-3.5 overflow-hidden font-black text-xs uppercase tracking-widest select-none shadow-md">
       <div className="flex w-max animate-marquee space-x-8 items-center">
         {[...items, ...items, ...items, ...items].map((item, idx) => (
           <div key={idx} className="flex items-center space-x-2">
-            <span className="text-black font-black text-base">★</span>
-            <item.icon className="w-4 h-4 text-black inline" />
-            <span className="text-black">{item.text}</span>
+            <span className="text-white font-black text-base">★</span>
+            <item.icon className="w-4 h-4 text-white inline" />
+            <span className="text-white">{item.text}</span>
           </div>
         ))}
       </div>

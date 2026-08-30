@@ -2,69 +2,55 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface LogoProps {
   className?: string;
   size?: "sm" | "md" | "lg";
+  /** Render only the circular emblem, without the wordmark line. */
+  markOnly?: boolean;
 }
 
-export default function Logo({ className = "", size = "md" }: LogoProps) {
-  const iconSize = size === "sm" ? 24 : size === "lg" ? 38 : 32;
-  const textSize = size === "sm" ? "text-lg" : size === "lg" ? "text-2xl" : "text-xl";
+const DIMENSIONS = {
+  sm: 40,
+  md: 54,
+  lg: 96,
+} as const;
+
+export default function Logo({ className = "", size = "md", markOnly = false }: LogoProps) {
+  const px = DIMENSIONS[size];
 
   return (
-    <Link href="/" className={`group flex items-center gap-2.5 select-none transition-transform active:scale-95 ${className}`}>
-      {/* Brand Icon Shield */}
-      <div className="relative flex items-center justify-center">
-        <svg
-          width={iconSize}
-          height={iconSize}
-          viewBox="0 0 48 48"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="transition-transform duration-300 group-hover:scale-105 drop-shadow-[0_0_12px_rgba(245,158,11,0.5)]"
-        >
-          {/* Shield Outline */}
-          <path
-            d="M24 4L7 11V22C7 32.5 14.3 42.2 24 45C33.7 42.2 41 32.5 41 22V11L24 4Z"
-            fill="url(#logoShieldGrad)"
-            stroke="url(#logoBorderGrad)"
-            strokeWidth="2.5"
-            strokeLinejoin="round"
-          />
-          {/* Alpha / Apex Chevron Upward Arrow */}
-          <path
-            d="M24 13L33 28H27L24 23L21 28H15L24 13Z"
-            fill="#ffffff"
-          />
-          {/* Flame / Core Inset */}
-          <path
-            d="M24 22L28 29H20L24 22Z"
-            fill="#f59e0b"
-          />
-          <defs>
-            <linearGradient id="logoShieldGrad" x1="7" y1="4" x2="41" y2="45" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#1e2433" />
-              <stop offset="1" stopColor="#0a0d13" />
-            </linearGradient>
-            <linearGradient id="logoBorderGrad" x1="7" y1="4" x2="41" y2="45" gradientUnits="userSpaceOnUse">
-              <stop stopColor="#fbbf24" />
-              <stop offset="0.5" stopColor="#f59e0b" />
-              <stop offset="1" stopColor="#d97706" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
+    <Link
+      href="/"
+      className={`group flex items-center gap-2.5 select-none transition-transform active:scale-95 ${className}`}
+      aria-label="Alpha Gains — Supplements Store"
+    >
+      <Image
+        src="/images/logo-mark.png"
+        alt="Alpha Gains"
+        width={px}
+        height={px}
+        priority
+        className="rounded-full object-contain transition-transform duration-300 group-hover:scale-105"
+        style={{ width: px, height: px }}
+      />
 
-      {/* Brand Text */}
-      <div className="flex flex-col leading-none">
-        <div className={`font-black tracking-tighter uppercase text-white font-sans ${textSize}`}>
-          ALPHA <span className="text-amber-400">GAINS</span>
-        </div>
-        <span className="text-[8px] tracking-[0.25em] font-bold text-gray-400 uppercase">
-          Nutrition &amp; Performance
+      {!markOnly && (
+        <span className="hidden sm:flex flex-col leading-none">
+          <span
+            className={`font-black italic uppercase tracking-tight ${
+              size === "lg" ? "text-2xl" : size === "sm" ? "text-base" : "text-xl"
+            }`}
+          >
+            <span className="text-neutral-900">ALPHA</span>
+            <span className="text-red-600"> GAINS</span>
+          </span>
+          <span className="mt-1 text-[8px] font-bold uppercase tracking-[0.2em] text-neutral-600">
+            Supplements Store
+          </span>
         </span>
-      </div>
+      )}
     </Link>
   );
 }
